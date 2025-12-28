@@ -26,7 +26,7 @@ jobs:
 
     - name: Build Solution
       run: |
-        msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64 /fl /flp:logfile=msbuild.log;errorsonly
+        msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64 /fl "/flp:logfile=msbuild.log;errorsonly"
         if ($LASTEXITCODE -ne 0) {
           Get-Content msbuild.log
           exit 1
