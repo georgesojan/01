@@ -124,13 +124,9 @@ copy $(OutDir)veracrypt.inf "$(SolutionDir)Debug\Setup Files\veracrypt.inf"</Com
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-    <DriverSign>
-      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
-    </DriverSign>
-    <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)Common;$(SolutionDir)Crypto;$(SolutionDir)Crypto\Argon2\src\blake2;$(SolutionDir)Crypto\Argon2\include;$(SolutionDir);%(AdditionalIncludeDirectories);$(IntDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>TC_WINDOWS_DRIVER;ARGON2_NO_THREADS;_NO_CRT_STDIO_INLINE;UNICODE;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Inf>
       <CatalogFileName>veracrypt.cat</CatalogFileName>
