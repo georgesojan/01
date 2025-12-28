@@ -24,9 +24,9 @@ jobs:
         choco install yasm -y
         echo "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
-    - name: Build Bootloader
+    - name: Create Dummy Boot Files
       run: |
-        msbuild src/Boot/Windows/Boot.vcxproj /p:Configuration=Release /p:Platform=Win32
+        powershell -File create_dummy_boot.ps1
     
     - name: Build Solution
       run: |
