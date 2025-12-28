@@ -40,4 +40,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 01-Windows-x64
-        path: src/Main/Release/01.exe
+        path: |
+          src/Mount/x64/Release/01.exe
+          src/Format/x64/Release/01Format.exe
+          src/Release/Setup Files/01-x64.exe
+          src/Release/Setup Files/01 Format-x64.exe
