@@ -24,9 +24,13 @@ jobs:
         choco install yasm -y
         echo "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
+    - name: Build Bootloader
+      run: |
+        msbuild src/Boot/Windows/Boot.vcxproj /p:Configuration=Release /p:Platform=Win32
+    
     - name: Build Solution
       run: |
-        msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64 /fl "/flp:logfile=msbuild.log;errorsonly"
+        msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64 /fl /flp:logfile=msbuild.log;errorsonly
         if ($LASTEXITCODE -ne 0) {
           Get-Content msbuild.log
           exit 1
