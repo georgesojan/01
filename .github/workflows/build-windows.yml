@@ -21,11 +21,16 @@ jobs:
 
     - name: Install YASM
       run: |
-        choco install yasm
+        choco install yasm -y
         echo "C:\ProgramData\chocolatey\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
     - name: Build Solution
-      run: msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64
+      run: |
+        msbuild src/VeraCrypt.sln /p:Configuration=Release_SkipOsDriverReqCheck /p:Platform=x64 /fl /flp:logfile=msbuild.log;errorsonly
+        if ($LASTEXITCODE -ne 0) {
+          Get-Content msbuild.log
+          exit 1
+        }
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
