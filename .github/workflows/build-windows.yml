@@ -16,6 +16,9 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
+    - name: Install NASM
+      uses: ilammy/setup-nasm@v1
+
     - name: Build Solution
       run: msbuild src/VeraCrypt.sln /p:Configuration=Release /p:Platform=x64
 
